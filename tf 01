@@ -1,0 +1,8 @@
+import tensorflow as tf
+
+# tf.constant为一个计算，计算结果为一个张量，保存在变量a中
+# 一个张量保存了 名字（name）、维度（shape）、类型（type）三个属性
+a = tf.constant([1.0, 2.0], name="a")
+b = tf.constant([2.0, 3.0], name="b")
+result = a + b
+print(result)
