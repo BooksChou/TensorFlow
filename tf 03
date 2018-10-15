@@ -1,0 +1,17 @@
+import tensorflow as tf
+
+w1 = tf.Variable(tf.random_normal([2, 3], stddev=1, seed=1))
+w2 = tf.Variable(tf.random_normal([3, 1], stddev=1, seed=1))
+
+#  定义placeholder作为存放数据输入的地方,并指定数据类型、维度以及名称信息
+x = tf.placeholder(tf.float32, shape=(3, 2), name="input")
+a = tf.matmul(x, w1)
+y = tf.matmul(a, w2)
+
+sess = tf.Session()
+# 初始化全局变量，就不需要一个一个去初始化w1、w2等变量
+init_op = tf.global_variables_initializer()
+sess.run(init_op)
+
+# 提供一个feed_dict（这是一个字典map）来指定x的取值，字典中给出每个要用到的placeholder的取值
+print(sess.run(y, feed_dict={x: [[0.7, 0.9], [1.1, 5.4], [1.5, 0.8]]}))
