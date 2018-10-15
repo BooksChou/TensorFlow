@@ -1,0 +1,19 @@
+import tensorflow as tf
+
+# 声明w1、w2两个变量
+w1 = tf.Variable(tf.random_normal([2, 3], stddev=1, seed=1))
+w2 = tf.Variable(tf.random_normal([3, 1], stddev=1, seed=1))
+
+#通过前向传播算法获得神经网络输出
+x = tf.constant([[0.7, 0.9]])
+a = tf.matmul(x, w1)
+y = tf.matmul(a, w2)
+
+#初始化w1、w2
+sess = tf.Session()
+sess.run(w1.initializer)
+sess.run(w2.initializer)
+
+#输出
+print(sess.run(y))
+sess.close()
