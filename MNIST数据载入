@@ -1,0 +1,23 @@
+from tensorflow.examples.tutorials.mnist import input_data
+
+# 载入MNIST数据集，并保存在本地的指定path中（此文件下载下来是zip文件，不需要解压，input_data.read_data读取的就是zip文件）
+# 训练数据图片： http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz
+# 训练数据答案： http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz
+# 测试数据图片： http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz
+# 测试数据答案:  http://yann.lecun.com/exdb/mnist/t10k-labels-id-ubyte.gz
+mnist = input_data.read_data_sets("E：Google Download/MNIST_data", one_hot=True)
+
+
+# 若数据集保存成功，会输出相应的数据55000,5000,10000以及一个列表
+print("Training data size:", mnist.train.num_examples)
+print("Validating data size", mnist.validation.num_examples)
+print("Testing data size:", mnist.test.num_examples)
+print("Example training data:", mnist.train.images[0])
+print("Example training data  label:", mnist.train.labels[0])
+
+
+# 从train的数据集中选取batch_size大小的训练数据
+batch_size = 100
+xs, ys = mnist.train.next_batch(batch_size)
+print("X shape:", xs.shape)
+print("Y shape:", ys.shape)
